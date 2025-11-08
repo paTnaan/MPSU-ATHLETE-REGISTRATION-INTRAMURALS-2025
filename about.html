@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | MPSU Intramurals 2025</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Trajan:wght@700&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    background-color: #f8f9fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* ensures footer stays at bottom */
+  }
+
+  /* HEADER */
+  header {
+    background: url('homepage background/who will the champion.jpg') center/cover no-repeat;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 123, 255, 0.5);
+    z-index: 1;
+  }
+
+  header .title {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 2rem;
+    font-family: 'Trajan', serif;
+    font-weight: 700;
+    z-index: 2;
+    position: relative;
+  }
+
+  header img {
+    height: 70px;
+    border-radius: 50%;
+  }
+
+  header .subtitle {
+    text-align: right;
+    font-size: 1.1rem;
+    z-index: 2;
+    position: relative;
+  }
+
+  /* NAVIGATION */
+  nav {
+    background-color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 12px 20px;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  nav a:hover {
+    color: #cce7ff;
+  }
+
+  nav a.active {
+    background-color: #cce7ff;
+    color: #007bff;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto;
+  }
+
+  .search-bar input {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .search-bar button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #cce7ff;
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .search-bar button:hover {
+    background-color: #cce7ff;
+  }
+
+  /* ABOUT SECTION */
+  .section {
+    flex: 1; /* fill remaining height */
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .section h2 {
+    margin-bottom: 20px;
+    color: #007bff;
+    font-size: 2rem;
+    font-family: 'Trajan', serif;
+    font-weight: 700;
+  }
+
+  .section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  /* FOOTER */
+  footer {
+    background-color: #004085;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+  }
+</style>
+
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="title">
+      <img src="homepage background/cropped-cropped-MPSU-Logo-3.png" alt="MPSU Logo" />
+      <span>Mountain Province State University-Bontoc Campus Intramurals 2025</span>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="homepage.html">Home</a>
+    <a href="about.html" class="active">About Us</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <button id="searchButton">Search</button>
+    </div>
+  </nav>
+
+  <!-- ABOUT SECTION -->
+  <section class="section">
+    <h2>About the Intramurals</h2>
+    <p>
+      The MPSU Intramurals 2025 is a grand celebration that brings together students,
+      faculty, and staff to showcase unity, sportsmanship, and school pride.
+      Through friendly competition and teamwork, the event fosters lasting
+      camaraderie and highlights the athletic excellence of MPSUians.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 MPSU Intramurals. All Rights Reserved.</p>
+  </footer>
+
+ <script>
+/*UNIVERSAL SEARCH FUNCTION (Works across all pages) */
+document.getElementById("searchButton").addEventListener("click", () => {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+
+  if (query === "") {
+    alert("Please enter a search keyword.");
+    return;
+  }
+
+  /* MAIN PAGE REDIRECTS */
+  if (query.includes("home")) {
+    window.location.href = "homepage.html";
+    return;
+  }
+  if (query.includes("about")) {
+    window.location.href = "about.html";
+    return;
+  }
+  if (query.includes("contact")) {
+    window.location.href = "contact.html";
+    return;
+  }
+  if (query.includes("gallery")) {
+    window.location.href = "gallery.html";
+    return;
+  }
+
+  /* REGISTRATION PAGE REDIRECTS */
+  if (
+    query.includes("register") ||
+    query.includes("registration") ||
+    query.includes("athlete") ||
+    query.includes("join") ||
+    query.includes("sign up") ||
+    query.includes("signup")
+  ) {
+    window.location.href = "form.html";
+    return;
+  }
+
+  /* GALLERY IMAGE SEARCH */
+  const galleryKeywords = [
+    "chess", "basketball", "baseball", "softball", "ml", "mobile legends",
+    "track", "soccer", "volleyball", "table tennis", "swimming",
+    "dart", "gerrund", "pitch", "yes sir", "schara"
+  ];
+
+  const matchedKeyword = galleryKeywords.find(keyword => query.includes(keyword));
+
+  if (matchedKeyword) {
+    window.location.href = `gallery.html#${encodeURIComponent(matchedKeyword.replace(/\s+/g, "-"))}`;
+    return;
+  }
+
+  alert("No matching content found.");
+});
+
+/* Allow pressing Enter to trigger search */
+document.getElementById("searchInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    document.getElementById("searchButton").click();
+  }
+});
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | MPSU Intramurals</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Trajan:wght@700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      background: url('homepage background/who will the champion.jpg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 50px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 123, 255, 0.5);
+      z-index: 1;
+    }
+
+    header .title {
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 2rem;
+      font-family: 'Trajan Pro', serif;
+      font-weight: 700;
+      z-index: 2;
+      position: relative;
+    }
+
+    header img {
+      height: 70px;
+      border-radius: 50%;
+    }
+
+    header .subtitle {
+      text-align: right;
+      font-size: 1.1rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* NAVIGATION */
+    nav {
+      background-color: #007bff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 12px 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      color: #cce7ff;
+    }
+
+    /* highlight current page */
+    nav a.active {
+      background-color: #cce7ff;
+      color: #007bff;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+    }
+
+    .search-bar input {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #cce7ff;
+      color: #007bff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .search-bar button:hover {
+      background-color: #cce7ff;
+    }
+
+    /* GALLERY GRID */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+      padding: 50px 20px;
+    }
+
+    .gallery h1 {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #007bff;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-family: 'Trajan Pro', serif;
+      font-weight: 700;
+    }
+
+    figure {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    figcaption {
+      margin-top: 8px;
+      font-size: 16px;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      background-color: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: flex-start;
+      padding: 5px 20px 20px 20px;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      max-width: 70%;
+      max-height: 70%;
+      position: relative;
+      margin-top: 5px;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .caption {
+      color: #fff;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    /* Navigation & Close Buttons */
+    .close, .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 36px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+      border-radius: 50%;
+      background-color: rgba(0,0,0,0.5);
+      transition: background 0.3s ease;
+    }
+
+    .close:hover, .prev:hover, .next:hover {
+      background-color: rgba(255, 215, 0, 0.8);
+      color: #004d00;
+    }
+
+    .close {
+      top: 15px;
+      right: 30px;
+      transform: none;
+      font-size: 28px;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* FOOTER */
+    footer {
+      background-color: #004d00;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 16px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #FFD700;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 500px) {
+      .gallery img { height: 180px; }
+      header h2 { font-size: 1.5rem; }
+      figcaption { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="title">
+      <img src="homepage background/cropped-cropped-MPSU-Logo-3.png" alt="MPSU Logo" />
+      <span>Mountain Province State University-Bontoc Campus Intramurals 2025</span>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="homepage.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="contact.html">Contact</a>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <button id="searchButton">Search</button>
+    </div>
+  </nav>
+
+  <!-- GALLERY -->
+<div class="gallery">
+  <h1>Event Gallery</h1>
+  <figure id="advance-education">
+    <img src="EVENT_GALLERY/ADVANCE_EDUCATION.jpg" alt="Advance Education">
+    <figcaption>Advance Education</figcaption>
+  </figure>
+  <figure id="baseball">
+    <img src="EVENT_GALLERY/BASEBALL.jpg" alt="Baseball">
+    <figcaption>Baseball</figcaption>
+  </figure>
+  <figure id="basketball-women">
+    <img src="EVENT_GALLERY/BASKETBALL WOMEN.jpg" alt="Basketball Women">
+    <figcaption>Basketball Women</figcaption>
+  </figure>
+  <figure id="basketball">
+    <img src="EVENT_GALLERY/BASKETBALL.jpg" alt="Basketball">
+    <figcaption>Basketball</figcaption>
+  </figure>
+  <figure id="blazing-phoenix">
+    <img src="EVENT_GALLERY/BLAZING_PHOENIX.jpg" alt="Blazing Phoenix">
+    <figcaption>Blazing Phoenix</figcaption>
+  </figure>
+  <figure id="blue-wolves">
+    <img src="EVENT_GALLERY/BLUE_WOLVES.jpg" alt="Blue Wolves">
+    <figcaption>Blue Wolves</figcaption>
+  </figure>
+  <figure id="bsba">
+    <img src="EVENT_GALLERY/BSBA.jpg" alt="Bsba">
+    <figcaption>Bsba</figcaption>
+  </figure>
+  <figure id="bsed">
+    <img src="EVENT_GALLERY/BSED.jpg" alt="Bsed">
+    <figcaption>Bsed</figcaption>
+  </figure>
+  <figure id="bsit">
+    <img src="EVENT_GALLERY/BSIT.jpg" alt="Bsit">
+    <figcaption>Bsit</figcaption>
+  </figure>
+  <figure id="bsn">
+    <img src="EVENT_GALLERY/BSN.jpg" alt="Bsn">
+    <figcaption>Bsn</figcaption>
+  </figure>
+  <figure id="champion">
+    <img src="EVENT_GALLERY/CHAMPION.jpg" alt="Champion">
+    <figcaption>Champion</figcaption>
+  </figure>
+  <figure id="chess">
+    <img src="EVENT_GALLERY/CHESS.jpg" alt="Chess">
+    <figcaption>Chess</figcaption>
+  </figure>
+  <figure id="crimson-knights">
+    <img src="EVENT_GALLERY/CRIMSON_KNIGHTS.jpg" alt="Crimson Knights">
+    <figcaption>Crimson Knights</figcaption>
+  </figure>
+  <figure id="drums-lyres">
+    <img src="EVENT_GALLERY/DRUMS&LYRES.jpg" alt="Drums & Lyres">
+    <figcaption>Drums & Lyres</figcaption>
+  </figure>
+  <figure id="field-track">
+    <img src="EVENT_GALLERY/FIELD_TRACK.jpg" alt="Field Track">
+    <figcaption>Field Track</figcaption>
+  </figure>
+  <figure id="flag">
+    <img src="EVENT_GALLERY/flag.jpg" alt="Flag">
+    <figcaption>Flag</figcaption>
+  </figure>
+  <figure id="folk-performers">
+    <img src="EVENT_GALLERY/FOLK PERFORMERS.jpg" alt="Folk Performers">
+    <figcaption>Folk Performers</figcaption>
+  </figure>
+  <figure id="green-hornets">
+    <img src="EVENT_GALLERY/GREEN_HORNETS.jpg" alt="Green Hornets">
+    <figcaption>Green Hornets</figcaption>
+  </figure>
+  <figure id="hrmt">
+    <img src="EVENT_GALLERY/HRMT.jpg" alt="Hrmt">
+    <figcaption>Hrmt</figcaption>
+  </figure>
+  <figure id="intermission">
+    <img src="EVENT_GALLERY/INTERMISSION.jpg" alt="Intermission">
+    <figcaption>Intermission</figcaption>
+  </figure>
+  <figure id="intramurals">
+    <img src="EVENT_GALLERY/INTRAMURALS.jpg" alt="Intramurals">
+    <figcaption>Intramurals</figcaption>
+  </figure>
+  <figure id="it-department">
+    <img src="EVENT_GALLERY/IT DEPARTMENT.jpg" alt="It Department">
+    <figcaption>It Department</figcaption>
+  </figure>
+  <figure id="ml">
+    <img src="EVENT_GALLERY/ML.jpg" alt="Ml">
+    <figcaption>Ml</figcaption>
+  </figure>
+  <figure id="mpsu">
+    <img src="EVENT_GALLERY/MPSU.jpg" alt="Mpsu">
+    <figcaption>Mpsu</figcaption>
+  </figure>
+  <figure id="opening-program">
+    <img src="EVENT_GALLERY/OPENING_PROGRAM.jpg" alt="Opening Program">
+    <figcaption>Opening Program</figcaption>
+  </figure>
+  <figure id="parade">
+    <img src="EVENT_GALLERY/PARADE.jpg" alt="Parade">
+    <figcaption>Parade</figcaption>
+  </figure>
+  <figure id="rotc">
+    <img src="EVENT_GALLERY/ROTC.jpg" alt="Rotc">
+    <figcaption>Rotc</figcaption>
+  </figure>
+  <figure id="sabt">
+    <img src="EVENT_GALLERY/SABT.jpg" alt="Sabt">
+    <figcaption>Sabt</figcaption>
+  </figure>
+  <figure id="scag">
+    <img src="EVENT_GALLERY/SCAG.jpg" alt="Scag">
+    <figcaption>Scag</figcaption>
+  </figure>
+  <figure id="street-dancers">
+    <img src="EVENT_GALLERY/STREET DANCERS.jpg" alt="Street Dancers">
+    <figcaption>Street Dancers</figcaption>
+  </figure>
+  <figure id="swimming">
+    <img src="EVENT_GALLERY/SWIMMING.jpg" alt="Swimming">
+    <figcaption>Swimming</figcaption>
+  </figure>
+  <figure id="ted">
+    <img src="EVENT_GALLERY/TED.jpg" alt="Ted">
+    <figcaption>Ted</figcaption>
+  </figure>
+  <figure id="track">
+    <img src="EVENT_GALLERY/TRACK.jpg" alt="Track">
+    <figcaption>Track</figcaption>
+  </figure>
+  <figure id="university">
+    <img src="EVENT_GALLERY/UNIVERSITY.jpg" alt="University">
+    <figcaption>University</figcaption>
+  </figure>
+  <figure id="volleyball">
+    <img src="EVENT_GALLERY/VOLLEYBALL.jpg" alt="Volleyball">
+    <figcaption>Volleyball</figcaption>
+  </figure>
+  <figure id="white-pythons">
+    <img src="EVENT_GALLERY/WHITE_PYTHONS.jpg" alt="White Pythons">
+    <figcaption>White Pythons</figcaption>
+  </figure>
+  <figure id="white-pythons1">
+    <img src="EVENT_GALLERY/WHITE_PYTHONS1.jpg" alt="White Pythons1">
+    <figcaption>White Pythons1</figcaption>
+  </figure>
+</div>
+
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="">
+      <div class="caption" id="modal-caption"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="homepage.html">← Back to Home</a>
+  </footer>
+
+ <script>
+const galleryImages = document.querySelectorAll(".gallery img");
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const modalCaption = document.getElementById("modal-caption");
+let currentIndex = 0;
+
+// Open modal when clicking image
+galleryImages.forEach((img, index) => {
+  img.addEventListener("click", () => {
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+    modalCaption.textContent = img.alt;
+    currentIndex = index;
+  });
+});
+
+// Close modal
+function closeModal() {
+  modal.style.display = "none";
+}
+
+// Next / Prev image
+function changeSlide(n) {
+  currentIndex += n;
+  if (currentIndex < 0) currentIndex = galleryImages.length - 1;
+  if (currentIndex >= galleryImages.length) currentIndex = 0;
+  modalImg.src = galleryImages[currentIndex].src;
+  modalCaption.textContent = galleryImages[currentIndex].alt;
+}
+
+// Close when clicking outside image
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
+});
+
+// Keyboard navigation
+document.addEventListener("keydown", (e) => {
+  if (modal.style.display === "flex") {
+    if (e.key === "ArrowLeft") changeSlide(-1);
+    if (e.key === "ArrowRight") changeSlide(1);
+    if (e.key === "Escape") closeModal();
+  }
+});
+
+// Open image by ID
+function openImageById(id) {
+  const imgFigure = document.getElementById(id);
+  if (!imgFigure) return;
+  const img = imgFigure.querySelector("img");
+  if (!img) return;
+
+  modal.style.display = "flex";
+  modalImg.src = img.src;
+  modalCaption.textContent = img.alt;
+
+  currentIndex = Array.from(galleryImages).indexOf(img);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash.substring(1);
+  if (hash) {
+    openImageById(hash);
+    const target = document.getElementById(hash);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+});
+
+
+// SEARCH FUNCTION
+document.getElementById("searchButton").addEventListener("click", () => {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+  const figures = document.querySelectorAll(".gallery figure");
+
+  // Redirect to specific pages if search matches them
+  if (query.includes("home")) {
+    window.location.href = "homepage.html";
+    return;
+  }
+  if (query.includes("about")) {
+    window.location.href = "about.html";
+    return;
+  }
+  if (query.includes("contact")) {
+    window.location.href = "contact.html";
+    return;
+  }
+  if (query.includes("gallery")) {
+    window.location.href = "Gallery.html";
+    return;
+  }
+
+  // search in gallery
+  let found = false;
+  figures.forEach(fig => {
+    const caption = fig.querySelector("figcaption").textContent.toLowerCase();
+    const altText = fig.querySelector("img").alt.toLowerCase();
+
+    if (caption.includes(query) || altText.includes(query)) {
+      fig.classList.remove("hidden");
+      fig.querySelector("img").classList.add("highlight");
+      found = true;
+
+      // auto-open the image if exact match
+      if (caption === query || altText === query) {
+        openImageById(fig.id);
+      }
+    } else {
+      fig.classList.add("hidden");
+      fig.querySelector("img").classList.remove("highlight");
+    }
+  });
+
+  if (!found && query !== "") {
+    alert("No matching content found.");
+  }
+  if (query === "") {
+    figures.forEach(fig => {
+      fig.classList.remove("hidden");
+      fig.querySelector("img").classList.remove("highlight");
+    });
+  }
+});
+
+// Allow pressing Enter to search
+document.getElementById("searchInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") document.getElementById("searchButton").click();
+});
+</script>
+
+
+
+</body>
+</html>
+

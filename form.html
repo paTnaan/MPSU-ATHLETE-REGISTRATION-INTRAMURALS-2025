@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MPSU Intramurals 2025 - Athletes Registration</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Trajan:wght@700&display=swap');
+
+/* BODY & BACKGROUND(CSS) */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9ff;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+
+
+/* HEADING(CSS) */
+h1 {
+  color: #007bff;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Trajan Pro', serif;
+  font-weight: 700;
+}
+
+/* FORM STYLING(CSS) */
+form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 750px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+}
+h2 {
+  color: #007bff;
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 5px;
+  margin-top: 25px;
+  font-size: 1.3rem;
+}
+label { display: block; margin-top: 12px; font-weight: bold; color: #333; }
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+input:focus, select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+input[type="radio"], input[type="checkbox"] {
+  width: auto; margin-right: 6px; cursor: pointer;
+  accent-color: #007bff;
+}
+
+/* ROWS */
+.row { display: flex; gap: 15px; flex-wrap: wrap; }
+.row > div { flex: 1; min-width: 200px; }
+
+/* SPORTS GRID WITH ICONS */
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+.sports-grid label {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px; border: 2px solid #ccc;
+  border-radius: 8px; cursor: pointer;
+  text-align: center; transition: all 0.3s ease;
+  font-weight: bold;
+  background: #f9f9f9;
+}
+.sports-grid label:hover {
+  border-color: #007bff;
+  background: #e7f3ff;
+  transform: translateY(-2px);
+}
+.sports-grid label img {
+  width: 30px; height: 30px;
+  transition: transform 0.3s;
+}
+.sports-grid label:hover img {
+  transform: scale(1.2);
+}
+
+/* OTHER EVENT INPUT */
+.other-event-input { display: none; margin-top: 6px; transition: all 0.5s ease; border-color: #ff7b72; box-shadow: 0 0 8px #ff7b72; }
+
+/* SUBMIT BUTTON */
+input[type="submit"] {
+  background: #007bff;
+  color: white; border: none; padding: 16px;
+  border-radius: 5px; font-weight: bold; cursor: pointer;
+  width: 100%; font-size: 1.1rem; transition: background-color 0.3s;
+}
+input[type="submit"]:hover { background: #0056b3; }
+
+/* BACK TO HOMEPAGE BUTTON */
+.back-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 90%;
+  max-width: 750px;
+  font-size: 1.1rem;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin: 25px auto 50px auto;
+  transition: background-color 0.3s;
+}
+.back-btn:hover {
+  background: #5a6268;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) { .sports-grid { grid-template-columns: 1fr; } .row { flex-direction: column; } }
+
+</style>
+</head>
+<body>
+
+
+<form id="athleteForm">
+  <h2>Personal Information</h2>
+  <fieldset>
+    <label for="fullname">Full Name</label>
+    <input type="text" id="fullname" name="fullname" placeholder="Enter full name" required>
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" placeholder="Enter email" required>
+  </fieldset>
+
+  <fieldset class="row">
+    <div>
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" name="phone" placeholder="Enter phone number" required>
+    </div>
+    <div>
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+    </div>
+    <div>
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="">--Select--</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>LGBTQ+</option>
+      </select>
+    </div>
+  </fieldset>
+
+
+
+
+  <label for="yearlevel">Year Level</label>
+  <select id="yearlevel" name="yearlevel" required>
+    <option value="">--Select Year Level--</option>
+    <option>1st Year</option>
+    <option>2nd Year</option>
+    <option>3rd Year</option>
+    <option>4th Year</option>
+  </select>
+
+  <h2>Sports & Events</h2>
+  <fieldset>
+    <legend>Select Sports / Events</legend>
+    <div class="sports-grid">
+      <label><input type="checkbox" name="sports" value="basketball"><img src="https://img.icons8.com/ios-filled/50/58a6ff/basketball.png"/>Basketball</label>
+      <label><input type="checkbox" name="sports" value="volleyball"><img src="https://img.icons8.com/ios-filled/50/58a6ff/volleyball.png"/>Volleyball</label>
+      <label><input type="checkbox" name="sports" value="badminton"><img src="https://img.icons8.com/ios-filled/50/58a6ff/badminton.png"/>Badminton</label>
+      <label><input type="checkbox" name="sports" value="tabletennis"><img src="https://img.icons8.com/ios-filled/50/58a6ff/ping-pong.png"/>Table Tennis</label>
+      <label><input type="checkbox" name="sports" value="chess"><img src="https://img.icons8.com/ios-filled/50/58a6ff/chessboard.png"/>Chess</label>
+      <label><input type="checkbox" name="sports" value="trackfield"><img src="https://img.icons8.com/ios-filled/50/58a6ff/running.png"/>Track & Field</label>
+      <label><input type="checkbox" name="sports" value="mobilelegend"><img src="https://img.icons8.com/ios-filled/50/58a6ff/controller.png"/>Mobile Legends</label>
+      <label><input type="checkbox" name="sports" value="indigenous"><img src="https://img.icons8.com/ios-filled/50/58a6ff/globe.png"/>Indigenous Games</label>
+    </div>
+  </fieldset>
+
+  <label for="coach">Assigned Coach or Adviser</label>
+  <input type="text" id="coach" name="coach" placeholder="Provide the name of your assigned coach/adviser">
+
+  <fieldset class="row">
+    <div>
+      <label for="emergency">Emergency Contact Name</label>
+      <input type="text" id="emergency" name="emergency">
+    </div>
+    <div>
+      <label for="emergency_number">Emergency Contact Number</label>
+      <input type="text" id="emergency_number" name="emergency_number">
+    </div>
+  </fieldset>
+
+  <label for="department">Department</label>
+  <select id="department" name="department" required>
+    <option value="">--Select Department--</option>
+    <option value="BSA">BSA</option>
+    <option value="BSBA">BSBA</option>
+    <option value="BSOA">BSOA</option>
+    <option value="BSIT">BSIT</option>
+  </select>
+
+  <fieldset>
+    <legend>Consent & Health</legend>
+    <label><input type="checkbox" name="waiver" required> I have read and agree to the MPSU Intramurals Rules and Waiver.</label>
+    <label><input type="checkbox" name="fitness" required> I am physically fit to participate in the MPSU Intramurals and understand the risks involved.</label>
+  </fieldset>
+
+  <input type="submit" value="Register as Athlete">
+   <a href="homepage.html" class="back-btn">← Back to Homepage</a>
+</form>
+
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.getElementById('athleteForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const sportsSelected = document.querySelectorAll('input[name="sports"]:checked').length > 0;
+
+  if(!sportsSelected){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Select at least one sport or event!',
+      confirmButtonColor: '#58a6ff'
+    });
+    return;
+  }
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Registration Successful!',
+    text: 'Welcome to MPSU Intramurals 2025!',
+    confirmButtonColor: '#58a6ff',
+    allowOutsideClick: false,
+    allowEscapeKey: false
+  }).then(() => {
+    window.location.href = "homepage.html";
+  });
+});
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | MPSU Intramurals 2025</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Trajan:wght@700&display=swap');
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+    }
+
+    /* HEADER */
+    header {
+      background: url('homepage background/who will the champion.jpg') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 50px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 123, 255, 0.5);
+      z-index: 1;
+    }
+
+    header .title {
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 2rem;
+      font-family: 'Trajan Pro', serif;
+      font-weight: 700;
+      z-index: 2;
+      position: relative;
+    }
+
+    header img {
+      height: 70px;
+      border-radius: 50%;
+    }
+
+    header .subtitle {
+      text-align: right;
+      font-size: 1.1rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* NAVIGATION */
+    nav {
+      background-color: #007bff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      padding: 12px 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      color: #cce7ff;
+    }
+
+    /* highlight current page */
+    nav a.active {
+      background-color: #cce7ff;
+      color: #007bff;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+    }
+
+    .search-bar input {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .search-bar button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #cce7ff;
+      color: #007bff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .search-bar button:hover {
+      background-color: #cce7ff;
+    }
+
+    /* CONTACT SECTION */
+    .contact-hero {
+      text-align: center;
+      margin: 60px 0 40px 0;
+      padding: 20px;
+    }
+
+    .contact-hero h1 {
+      color: #007bff;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-family: 'Trajan Pro', serif;
+      font-weight: 700;
+    }
+
+    .contact-hero p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .contact-container {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
+
+    .contact-info {
+      flex: 1;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 20px;
+      color: #007bff;
+      font-size: 1.8rem;
+    }
+
+    .contact-info p {
+      font-size: 1.1rem;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+
+    .contact-info .icon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+    .social-media {
+      margin-top: 30px;
+    }
+
+    .social-media h3 {
+      color: #007bff;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .social-icons a {
+      color: #007bff;
+      font-size: 2.2rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #cce7ff;
+    }
+
+    .contact-form {
+      flex: 1;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #007bff;
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .contact-form label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .contact-form button {
+      background-color: #007bff;
+      color: white;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1.1rem;
+      width: 100%;
+    }
+
+    .contact-form button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: #004085;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="title">
+      <img src="homepage background/cropped-cropped-MPSU-Logo-3.png" alt="MPSU Logo" />
+      <span>Mountain Province State University-Bontoc Campus Intramurals 2025</span>
+    </div>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="homepage.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html" class="active">Contact</a>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search..." />
+      <button id="searchButton">Search</button>
+    </div>
+  </nav>
+
+  <!-- CONTACT HERO -->
+  <section class="contact-hero">
+    <h1>Get In Touch</h1>
+    <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <div class="contact-container">
+    <div class="contact-info">
+      <h2>Contact Information</h2>
+      <p><span class="icon">📍</span> Mountain Province State University, Bontoc Campus</p>
+      <p><span class="icon">📞</span> Phone: 09123456789</p>
+      <p><span class="icon">📧</span> Email: info@mpsuintramurals2025.com</p>
+
+      <div class="social-media">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="https://facebook.com/mpsuintramurals2025" target="_blank">📘</a>
+          <a href="https://twitter.com/mpsuintramurals" target="_blank">🐦</a>
+          <a href="https://instagram.com/mpsuintramurals" target="_blank">📷</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h2>Send us a Message</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email address" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" rows="6" placeholder="Write your message here..." required></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 MPSU Intramurals. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+/*UNIVERSAL SEARCH FUNCTION (Works across all pages) */
+document.getElementById("searchButton").addEventListener("click", () => {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+
+  if (query === "") {
+    alert("Please enter a search keyword.");
+    return;
+  }
+
+  /* MAIN PAGE REDIRECTS */
+  if (query.includes("home")) {
+    window.location.href = "homepage.html";
+    return;
+  }
+  if (query.includes("about")) {
+    window.location.href = "about.html";
+    return;
+  }
+  if (query.includes("contact")) {
+    window.location.href = "contact.html";
+    return;
+  }
+  if (query.includes("gallery")) {
+    window.location.href = "gallery.html";
+    return;
+  }
+
+  /* REGISTRATION PAGE REDIRECTS */
+  if (
+    query.includes("register") ||
+    query.includes("registration") ||
+    query.includes("athlete") ||
+    query.includes("join") ||
+    query.includes("sign up") ||
+    query.includes("signup")
+  ) {
+    window.location.href = "form.html";
+    return;
+  }
+
+  /* GALLERY IMAGE SEARCH */
+  const galleryKeywords = [
+    "chess", "basketball", "baseball", "softball", "ml", "mobile legends",
+    "track", "soccer", "volleyball", "table tennis", "swimming",
+    "dart", "gerrund", "pitch", "yes sir", "schara"
+  ];
+
+  const matchedKeyword = galleryKeywords.find(keyword => query.includes(keyword));
+
+  if (matchedKeyword) {
+    window.location.href = `gallery.html#${encodeURIComponent(matchedKeyword.replace(/\s+/g, "-"))}`;
+    return;
+  }
+
+  alert("No matching content found.");
+});
+
+/* Allow pressing Enter to trigger search */
+document.getElementById("searchInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    document.getElementById("searchButton").click();
+  }
+});
+</script>
+
+</body>
+</html>
